@@ -1,5 +1,14 @@
 #include <Arduino.h>
-#include "C:\Projects\Tech Stend\RX_TX_command.h"
+
+#include "SPI.h"
+
+#define CS_GO 10 // CS SPI contact
+
+#define TX_RX_COMMAND_PATH "C:\Users\\Admin\\Documents\\PUM_Start_Blynk-main\\TechnoparkStend\\RX_TX_command.h"; // path to tx rx file 
+
+#include TX_RX_COMMAND_PATH
+
+#include <mcp2515.h>
 
 // подключаем софт юарт
 #include "softUART.h"
@@ -18,10 +27,24 @@ blok_bri data;
 
 byte sensor, last_sensor = 0;
 
+MCP2515 mcp2515(10);
+
+struct can_frame canMsg1;
+
+union float_bytes_t
+{
+    float value;
+    byte bytes[sizeof(float)];
+};
+
 void setup() {
   // put your setup code here, to run once:
   pinMode(PHOTO_RESISTOR, INPUT);
   Serial.begin(9600);
+  mcp2515.setBitrate(CAN_125KBPS, MCP_8MHZ);
+  mcp2515.reset();
+  mcp2515.setNormalMode();
+  SPI.begin();
 }
 
 void loop() {
@@ -33,6 +56,7 @@ void loop() {
 
   byte korrekt = sensor * 3 / 100;
 
+  /*
   if (sensor > last_sensor + korrekt || sensor < last_sensor - korrekt) {
     last_sensor = sensor;
     Serial.println(sensor);
@@ -46,6 +70,9 @@ void loop() {
   if (bus.statusChanged()) {  // если статус изменился
     Serial.print("Status: "); Serial.println(bus.getStatus());  // выводим код
   }
-
+  */
+  canMsg1.can_id  = 0x0F6;
+  canMsg1.can_dlc = 1;
+  canMsg1.data[0] = sensor;
   
 }
