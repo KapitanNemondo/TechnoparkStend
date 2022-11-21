@@ -1,0 +1,24 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "Blok bri",
+			"path": "."
+		},
+		{
+			"name": "Main Block",
+			"path": "../Main Block"
+		},
+		{
+			"name": "Smart Class",
+			"path": "../Smart Class"
+		},
+		{
+			"name": "Stend TP",
+			"path": "../Stend TP"
+		}
+	],
+	"settings": {}
+}

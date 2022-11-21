@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../../../Projects/Project-Evolution"
+		},
+		{
+			"name": "Stend TP",
+			"path": ".."
+		},
+		{
+			"name": "Smart Class",
+			"path": "../../Smart Class"
+		},
+		{
+			"name": "Main Block",
+			"path": "../../Main Block"
+		}
+	],
+	"settings": {}
+}
